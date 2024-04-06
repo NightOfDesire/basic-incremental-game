@@ -7,6 +7,7 @@ const TABS = {
     1: [
         {id:"Main"},
         {id:"Prestige",unl() {return false}},
+        {id:"Elements"},
         {id:"Stats"},
         {id:"Settings"}
     ],
@@ -18,10 +19,13 @@ const TABS = {
             {id:"Main"}
         ],
         2: [
+            {id:"Elements",style:"light_green"}
+        ],
+        3: [
             {id:"Rank rewards"},
             {id:"Scaling"}
         ],
-        3: [
+        4: [
             {id:"Options"}
         ]
     }
