@@ -1,5 +1,5 @@
 var tmp = {}
-
+var tmp_update = []
 function resetTemp() {
     let d = new Date()
     keep = [tmp.el, tmp.prevSave]
@@ -45,8 +45,6 @@ function updateTemp() {
     tmp.gs = E(1).mul(player.devoptions.speed)
     
 
-    for (let upd in tmp.update) {
-        upd()
-    }
+    for (let x = 0; x < tmp_update.length; x++) tmp_update[x]()
     
 }

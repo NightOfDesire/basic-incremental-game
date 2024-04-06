@@ -1,3 +1,7 @@
+var el = {
+    setup: {},
+    update: {}
+}
 const SCALE_START = {
     super: {
         rank: E(25),
@@ -48,14 +52,12 @@ const FULL_SCALE_NAME = ['Super','Hyper','Extreme','Ultra','EXOTIC']
 const SCALING_RES = {
     rank(x=0) {return player.ranks.rank},
     tier(x=0) {return player.ranks.tier},
-    /**@param kys @param javascript */
-	/**@param RAHHHH */
-	pointUpg(x=1) {return player.build["points_"+(x+1)].amt}
+    asc(x=0) {return player.ranks.asc}
 }
 const NAME_FROM_RES = {
     rank: "Rank",
     tier: "Tier",
-    pointUpg: "Point Upgrades 1-3"
+    asc: "Asc"
 }
 const SCALE_FP = {}
 
@@ -63,7 +65,7 @@ const SCALE_FP = {}
 
 
 
-function updateScalingHTML() {
+el.update.scaling = () => {
 	let s = SCALE_TYPE[player.scaling_ch]
 	// tmp.el.scaling_name.setTxt(FULL_SCALE_NAME[player.scaling_ch])
 	if (!tmp.scaling) return
@@ -85,7 +87,7 @@ function updateScalingHTML() {
 }
 
 
-function updateScalingTemp() {
+tmp_update.push(()=>{
 	for (let x = 0; x < SCALE_TYPE.length; x++) {
 		let st = SCALE_TYPE[x]
         if (!tmp.scaling) tmp.scaling = {}
@@ -121,7 +123,7 @@ function updateScalingTemp() {
 			}
 		}
 	}
-}
+})
 
 
 function scalingActive(name, amt, type) {
@@ -261,7 +263,7 @@ Decimal.prototype.scaleEvery = function (id, rev=false, fp=SCALE_FP[id]?SCALE_FP
 
 
 /**@param {nuhuh} nuhuh*/
-function setupHTML() {
+el.setup.main = () => {
 	let tabs = new Element("tabs")
 	let stabs = new Element("stabs")
 	let table = ""
@@ -323,19 +325,11 @@ function setupHTML() {
 		table += `</div>`
 	}
 	scaling_table.setHTML(table)
-	//setupSoftcapHTML()
-	setupStatsHTML()
-	setupElementsHTML()
-    tmp.el = {}
-	let all = document.getElementsByTagName("*")
-	for (let i=0;i<all.length;i++) {
-		let x = all[i]
-		tmp.el[x.id] = new Element(x)
-	}
+	
 
 	
 }
-function updateTabsHTML() {
+el.update.tabs = () => {
 	let s = true
 	tmp.el.stabs_div.setDisplay(TABS[2][player.tab])
 	
@@ -360,7 +354,7 @@ function updateTabsHTML() {
 	}
 }
 
-function updateRanksRewardHTML() {
+el.update.rank_rewards = () => {
 	// tmp.el["ranks_reward_name"].setTxt(RANKS.fullNames[player.ranks_reward])
 	for (let x = 0; x < RANKS.names.length; x++) {
 		let rn = RANKS.names[x]
@@ -377,7 +371,24 @@ function updateRanksRewardHTML() {
 }
 
 
+function setupHTML() {
+	for (let x in el.setup) el.setup[x]()
+	
+    tmp.el = {}
+	let all = document.getElementsByTagName("*")
+	for (let i=0;i<all.length;i++) {
+		let x = all[i]
+		tmp.el[x.id] = new Element(x)
+	}
+}
+
 function updateHTML() {
+    for (let x in el.update) el.update[x]()
+}
+
+el.update.main = () => {
+    doc
+
     document.documentElement.style.setProperty('--font', player.options.font)
 	document.documentElement.style.setProperty('--cx', tmp.cx)
 	document.documentElement.style.setProperty('--cy', tmp.cy)
@@ -392,4 +403,5 @@ function updateHTML() {
 	if (player.stab[4] == 0) updateRanksRewardHTML()
 	if (player.stab[4] == 1) updateScalingHTML()
 	if (player.stab[3] == 1) updateElementsHTML()
+    
 }
