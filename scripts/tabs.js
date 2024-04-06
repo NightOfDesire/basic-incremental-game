@@ -19,7 +19,7 @@ const TABS = {
         ],
         2: [
             {id:"Rank rewards"},
-            {}
+            {id:"Scaling"}
         ],
         3: [
             {id:"Options"}
