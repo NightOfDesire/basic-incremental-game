@@ -157,7 +157,7 @@ function loadGame(start=true, gotNaN=false) {
     if (start) {
         updateTemp()
         setupHTML()
-        setupTooltips()
+        //setupTooltips()
         setInterval(save,15000)
 
         /**@param {stfu} shutUpError */
