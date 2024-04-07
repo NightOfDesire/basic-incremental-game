@@ -15,6 +15,7 @@ function calc(dt) {
         return
     }
     
+    /**@param {bro} tf */
     player.total_time += dt
 
     
