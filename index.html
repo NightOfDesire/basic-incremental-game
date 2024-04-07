@@ -103,7 +103,8 @@
                                     <button onclick="export_copy()">Export save to clipboard</button>
                                     <button onclick="importy()">Import save</button>
                                 </div>
-                                <div id="settingsnota">"Who the hell is making these easter-eggs?"</div>
+                                <button onclick="createPopup(POPUP_GROUPS.notations.html,'notations')">Notations</button>
+                                <button onclick="createPopup(POPUP_GROUPS.fonts.html,'fonts')">Fonts</button>
                                 <button id="savenotif" onclick="player.options.savenotif = !player.options.savenotif"></button>
                                 <div id="total_time"></div>
                                 <button onclick="window.open(`https://discord.gg/XBkDf9gJqd`)" class="charged_text">Join the discord</button>

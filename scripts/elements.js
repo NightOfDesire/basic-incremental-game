@@ -313,7 +313,7 @@ el.setup.main = () => {
 	}
 
 	ranks_rewards_table.setHTML(table)*/
-	let scaling_table = new Element("scaling_table")
+	/*let scaling_table = new Element("scaling_table")
 	table = ""
 	
 	for (let x = 0; x < SCALE_TYPE.length; x++) {
@@ -324,7 +324,7 @@ el.setup.main = () => {
 		}
 		table += `</div>`
 	}
-	scaling_table.setHTML(table)
+	scaling_table.setHTML(table)*/
 	
 
 	
@@ -354,7 +354,7 @@ el.update.tabs = () => {
 	}
 }
 
-el.update.rank_rewards = () => {
+/*el.update.rank_rewards = () => {
 	// tmp.el["ranks_reward_name"].setTxt(RANKS.fullNames[player.ranks_reward])
 	for (let x = 0; x < RANKS.names.length; x++) {
 		let rn = RANKS.names[x]
@@ -368,7 +368,7 @@ el.update.rank_rewards = () => {
 			}
 		}
 	}
-}
+}*/
 
 
 function setupHTML() {
@@ -387,21 +387,15 @@ function updateHTML() {
 }
 
 el.update.main = () => {
-    doc
-
     document.documentElement.style.setProperty('--font', player.options.font)
 	document.documentElement.style.setProperty('--cx', tmp.cx)
 	document.documentElement.style.setProperty('--cy', tmp.cy)
 
 	
-	updateTabsHTML()
+	
 	tmp.el.loading.setDisplay(!tmp.start)
 	tmp.el.app.setDisplay(tmp.start)
 	updateSettingsHTML()
-	updateRanksHTML()
-	updateStatsHTML()
-	if (player.stab[4] == 0) updateRanksRewardHTML()
-	if (player.stab[4] == 1) updateScalingHTML()
 	if (player.stab[3] == 1) updateElementsHTML()
     
 }

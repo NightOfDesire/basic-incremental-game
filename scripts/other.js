@@ -13,24 +13,47 @@ function updatePopupIndex() {
 }
 
 
-
-/*const POPUP_GROUPS = {
-    help_time: {
-        html: `
-        1 minute = 60 seconds<br>
-        1 hour = 60 minutes<br>
-        1 day = 24hrs<br>
-        1 yr = 365d<br>
-        1 Stellar Year = ${format(1e6)} yr<br>
-        1 Eon = ${format(1e9)} yr<br>
-        1 Eclipsal = ${format("ee3")} yr (logarithmic)<br>
-        1 Gravitational Wavespan = ${format("e30")} Eclipsals (logarithmic)<br>
-        1 Chrono-Resonance Interval = ${format("e100")} Gravitational Wavespans (logarithmic)<br>
-        1 Time-Dilation Drift = ${format("ee6")} Chrono-Resonance Intervals (logarithmic)
-        `
-    }
-}*/
-
+const POPUP_GROUPS = {
+fonts: {
+    // <button class="btn" style="font-family: Comic Sans MS;" onclick="player.options.font = 'Comic Sans MS'">Comic Sans MS</button>
+    html: `
+        <button class="btn" style="font-family: 'Andy Bold';" onclick="player.options.font = 'Andy Bold'">Andy Bold</button>
+        <button class="btn" style="font-family: Arial, Helvetica, sans-ser;" onclick="player.options.font = 'Arial, Helvetica, sans-ser'">Arial</button>
+        <button class="btn" style="font-family: Bahnschrift;" onclick="player.options.font = 'Bahnschrift'">Bahnschrift</button>
+        <button class="btn" style="font-family: Courier;" onclick="player.options.font = 'Courier'">Courier</button>
+        <button class="btn" style="font-family: Cousine;" onclick="player.options.font = 'Cousine'">Cousine</button>
+        <button class="btn" style="font-family: 'Flexi IBM VGA False';" onclick="player.options.font = 'Flexi IBM VGA False'">Flexi IBM VGA False</button>
+        <button class="btn" style="font-family: Inconsolata;" onclick="player.options.font = 'Inconsolata'">Inconsolata</button>
+        <button class="btn" style="font-family: 'Lato';" onclick="player.options.font = 'Lato'">Lato</button>
+        <button class="btn" style="font-family: 'Lucida Handwriting';" onclick="player.options.font = 'Lucida Handwriting'">Lucida Handwriting</button>
+        <button class="btn" style="font-family: 'Lunasima';" onclick="player.options.font = 'Lunasima'">Lunasima</button>
+        <button class="btn" style="font-family: Monospace-Typewritter;" onclick="player.options.font = 'Monospace-Typewritter'">Monospace Typewritter</button>
+        <button class="btn" style="font-family: 'MS Sans Serif';" onclick="player.options.font = 'MS Sans Serif'">MS Sans Serif</button>
+        <button class="btn" style="font-family: 'Noto Sans JP';" onclick="player.options.font = 'Noto Sans JP'">Noto Sans JP</button>
+        <button class="btn" style="font-family: 'Nova Mono';" onclick="player.options.font = 'Nova Mono'">Nova Mono</button>
+        <button class="btn" style="font-family: 'Nunito';" onclick="player.options.font = 'Nunito'">Nunito</button>
+        <button class="btn" style="font-family: 'Retron2000';" onclick="player.options.font = 'Retron2000'">Retron 2000</button>
+        <button class="btn" style="font-family: 'Roboto';" onclick="player.options.font = 'Roboto'">Roboto</button>
+        <button class="btn" style="font-family: 'Roboto Mono';" onclick="player.options.font = 'Roboto Mono'">Roboto Mono</button>
+        <button class="btn" style="font-family: 'Source Sans Pro';" onclick="player.options.font = 'Source Sans Pro'">Source Sans Pro</button>
+        <button class="btn" style="font-family: 'Source Serif Pro';" onclick="player.options.font = 'Source Serif Pro'">Source Serif Pro</button>
+        <button class="btn" style="font-family: Verdana, Geneva, Tahoma, sans-serif;" onclick="player.options.font = 'Verdana, Geneva, Tahoma, sans-serif'">Verdana</button>
+    `
+},
+notations: {
+    html: `
+        <button class="btn" onclick="player.options.notation = 'elemental'">Elemental</button>
+        <button class="btn" onclick="player.options.notation = 'eng'">Engineering</button>
+        <button class="btn" onclick="player.options.notation = 'inf'">Infinity</button>
+        <button class="btn" onclick="player.options.notation = 'mixed_sc'">Mixed Scientific</button>
+        <button class="btn" onclick="player.options.notation = 'layer'">Prestige Layer</button>
+        <button class="btn" onclick="player.options.notation = 'sc'">Scientific</button>
+        <button class="btn" onclick="player.options.notation = 'st'">Standard</button>
+        <button class="btn" onclick="player.options.notation = 'old_sc'">Old Scientific</button>
+        <button class="btn" onclick="player.options.notation = 'omega'">Omega</button>
+        <button class="btn" onclick="player.options.notation = 'omega_short'">Omega Short</button>
+    `
+}}
 
 function addNotify(text, duration=3) {
     tmp.notify.push({text: text, duration: duration});
