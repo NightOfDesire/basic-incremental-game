@@ -223,7 +223,7 @@ const FORMATS = {
       format(ex, acc, max) {
         ex = E(ex)
         let e = ex.log10().floor()
-        if (e.lt(50) && e.gte(max)) return format(ex,acc,max,"st")
+        if (e.lt(63) && e.gte(max)) return format(ex,acc,max,"st")
         else return format(ex,acc,max,"sc")
       }
     },
@@ -295,7 +295,7 @@ function toSuperscript(value) {
       .join("");
 }
 
-function format(ex, acc=2, max=7/*player.options.sci_start.log10()*/, type="mixed_sc") {
+function format(ex, acc=2, max=9, type="mixed_sc") {
     ex = E(ex)
     neg = ex.lt(0)?"-":""
     if (ex.mag == Infinity) return neg + 'Infinity'
@@ -306,17 +306,11 @@ function format(ex, acc=2, max=7/*player.options.sci_start.log10()*/, type="mixe
     switch (type) {
         case "sc":
             if (ex.log10().lt(Math.min(-acc,0)) && acc > 1) {
-                if (ex.lt(1)) {
-                  return `${neg}1/${format(E(1).div(ex), acc, max, "st")}`
-                }
                 let e = ex.log10().ceil()
                 let m = ex.div(e.eq(-1)?E(0.1):E(10).pow(e))
                 let be = e.mul(-1).max(1).log10().gte(9)
-                return neg+'e'+format(e, 0, max, "mixed_sc")
+                return neg+(be?'':m.toFixed(2))+'e'+format(e, 0, max, "mixed_sc")
             } else if (e.lt(max)) {
-                if (ex.lt(1)) {
-                  return `${neg}1/${format(E(1).div(ex), acc, max, "st")}`
-                }
                 let a = Math.max(Math.min(acc-e.toNumber(), acc), 0)
                 return neg+(a>0?ex.toFixed(a):ex.toFixed(a).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))
             } else {
@@ -326,14 +320,11 @@ function format(ex, acc=2, max=7/*player.options.sci_start.log10()*/, type="mixe
                 }
                 let m = ex.div(E(10).pow(e))
                 let be = e.log10().gte(9)
-                return neg+'e'+format(e, 0, max, "mixed_sc")
+                return neg+(be?'':m.toFixed(2))+'e'+format(e, 0, max, "mixed_sc")
             }
         case "st":
             let e3 = ex.log(1e3).floor()
             if (e3.lt(1)) {
-              if (ex.lt(1)) {
-                return `${neg}1/${format(E(1).div(ex), acc, max, "st")}`
-              }
               return neg+ex.toFixed(Math.max(Math.min(acc-e.toNumber(), acc), 0))
             } else {
               let e3_mul = e3.mul(3)
@@ -359,10 +350,6 @@ function format(ex, acc=2, max=7/*player.options.sci_start.log10()*/, type="mixe
                 }
               }
 
-              if (ex.lt(1)) {
-                return `${neg}1/${format(E(1).div(ex))}`
-              }
-
               let m = ex.div(E(10).pow(e3_mul))
               return neg+(ee.gte(10)?'':(m.toFixed(E(2).sub(e.sub(e3_mul)).add(1).toNumber()))+' ')+final
             }
@@ -370,7 +357,6 @@ function format(ex, acc=2, max=7/*player.options.sci_start.log10()*/, type="mixe
             return neg+FORMATS[type].format(ex, acc, max)
     }
 }
-
 
 function formatGain(amt, gain) {
     let next = amt.add(gain)
@@ -384,7 +370,7 @@ function formatGain(amt, gain) {
     return rate
 }
 
-function formatTime2(ex,acc=0,type="s") {
+function formatTime(ex,acc=0,type="s") {
     ex = E(ex)
     if (ex.mag == Infinity) return 'Forever'
     if (ex.gte(31536000)) return format(ex.div(31536000).floor(),0)+" years"+(ex.div(31536000).gte(1e9) ? "" : " " + formatTime(ex.mod(31536000),acc,'y'))
@@ -394,125 +380,17 @@ function formatTime2(ex,acc=0,type="s") {
     return (ex.gte(10)||type!="m" ?"":"0")+format(ex,acc)+(type=='s'?"s":"")
 }
 
-function formatTime(x, acc=2) {
-  let ex = E(x)
-  if (ex.mag == Infinity) return 'Forever'
-  /*if (TDdrifts(ex).gte(1)) {
-    return TDdrifts(ex).format(acc) + " Time-Dilation drifts"
-  }
-  else if (eventhorizoneternities(x).gte(1)) {
-    return eventhorizoneternities(x).format(acc) + " Event Horizon Eternities"
-  }
-  else if (cri(ex).gte(1)) {
-    return cri(ex).format(acc) + " Chrono-Resonance Intervals"
-  }
-  else if (gravwaves(ex).gte(1)) {
-    return gravwaves(ex).format(acc) + " Gravitational Wavespans"
-  }
-  else if (eclipsals(ex).gte(1)) {
-    return eclipsals(ex).format(acc) + " Eclipsals"
-  }*/
-  
-  /*if (years(ex).gte(1e9)) {
-    return years(ex).div(1e9).format(acc) + " Eons"
-  }
-  else if (years(ex).gte(1e6)) {
-    return years(ex).div(1e6).format(acc) + " Stellar Years"
-  }
-  else if (ex.gte(3.1536e10)) {
-    return ex.div(3.1536e10).format(acc) + " Millennia"
-  }
-  else if (ex.gte(31536000)) {
-    return ex.div(31536000).format(acc) + " Years"
-  }
-  else if (ex.gte(86400)) {
-    return ex.div(604800).format(acc) + " Days"
-  } 
-  else if (ex.gte(3600)) {
-    return ex.div(3600).format(acc) + " Hours"
-  } 
-  else if (ex.gte(60)) {
-    return ex.div(60).format(acc) + " Minutes"
-  }
-  else if (ex.lt(60)) {
-    return ex.format(acc) + " Seconds"
-  }*/
-  if (ex.gte(0) && ex.lt(60)) {
-    return ex.format(acc) + " Seconds"
-  } else if (ex.gte(60) && ex.lt(3600)) {
-    return ex.div(60).format(acc) + " Minutes"
-  } else if (ex.gte(3600) && ex.lt(86400)) {
-    return ex.div(3600).format(acc) + " Hours"
-  } else if (ex.gte(86400) && years(ex).lt(1)) {
-    return ex.div(86400).format(acc) + " Days"
-  } else if (years(ex).gte(1) && years(ex).lt(1e3)) {
-    return years(ex).format(acc) + " Years"
-  } else if (years(ex).gte(1e3) && years(ex).lt(1e6)) {
-    return years(ex).div(1e3).format(acc) + " Millennia"
-  } else if (years(ex).gte(1e6) && galyears(ex).lt(1)) {
-    return years(ex).div(1e6).format(acc) + " Stellar Years"
-  } else if (galyears(ex).gte(1)) {
-    return galyears(ex).format(acc) + " Galactic Years"
-  } else {
-    return ex.format(acc) + " s"
-  }
-}
-
-function years(x) {
-  return E(3.1536e7).mul(x)
-}
-function galyears(x) {
-  return years(1e30).mul(x)
-}
-/*function gravwaves(x) {
-  return eclipsals("e30").mul(x)
-}
-function cri(x) {
-  return gravwaves("e100").mul(x)
-}
-function eventhorizoneternities(x) {
-  return cri("e308").mul(x)
-}
-function TDdrifts(x) {
-  return eventhorizoneternities("ee6").mul(x)
-}*/
-
 function formatReduction(ex,acc) { return Decimal.sub(1,ex).mul(100).format(acc)+"%" }
+
 function formatPercent(ex,acc) { return Decimal.mul(ex,100).format(acc)+"%" }
+
 function formatMult(ex,acc) { return Decimal.gte(ex,1)?"×"+format(ex,acc):"/"+Decimal.pow(ex,-1).format(acc)}
+
 function formatPow(ex,acc) { return "^"+format(ex,acc) }
-function formatAdd(ex, acc) { return "+"+format(ex,acc) }
-function formatSub(ex, acc) { return "-"+format(ex,acc) }
+
 function expMult(a,b,base=10) { return Decimal.gte(a,10) ? Decimal.pow(base,Decimal.log(a,base).pow(b)) : E(a) }
 
-function uni(x) {
-  return E(1.5e56).mul(x)
-}
 
-function mlt(x) {
-  return uni("ee9").pow(x)
-}
-
-function formatMass(x, acc, max) {
-  let ex = E(x)
-
-
-  if (ex.gte('1.5e1000000056')) {
-    return mlt(ex).format(acc, max) + " mlt"
-  } 
-  if (ex.gte(1.5e56)) {
-    return uni(ex).format(acc, max) + " uni"
-  }
-  if (ex.gte(1e6)) {
-    return ex.div(1e6).format(acc, max) + " tonne"
-  }
-  if (ex.gte(1e3)) {
-    return ex.div(1e3).format(acc, max) + " kg"
-  }
-  if (ex.lt(1e3)) {
-    return ex.format(acc, max) + " g"
-  }
-}
 
 Decimal.prototype.modular=Decimal.prototype.mod=function (other){
   other=E(other);
@@ -536,7 +414,6 @@ function scale(x, s, p, mode, rev) {
 }
 
 Decimal.prototype.softcap = function (start, power, mode, dis=false) {
-  /**@param nil */
   var x = this.clone()
   if (!dis&&x.gte(start)) {
       if ([0, "pow"].includes(mode)) x = x.div(start).max(1).pow(power).mul(start)
@@ -550,7 +427,6 @@ Decimal.prototype.softcap = function (start, power, mode, dis=false) {
 Decimal.prototype.scale = function (s, p, mode, rev=false) {
   s = E(s)
   p = E(p)
-  /**@param nil */
   var x = this.clone()
   if (x.gte(s)) {
       if ([0, "pow"].includes(mode)) x = rev ? x.div(s).root(p).mul(s) : x.div(s).pow(p).mul(s)

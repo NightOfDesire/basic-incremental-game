@@ -147,7 +147,7 @@ button, .btn:not(.locked) {
 	transition-duration: 0.15s;
 }
 .btn.locked {
-	border: solid 2.5px #333;
+	border: solid 2.5px #222;
 	background-color: #111;
 	color: #444;
 	font-size: 13px;
@@ -161,12 +161,12 @@ button, .btn:not(.locked) {
 	width: 100%;
 	margin-top: 6px;
 	height: 6px;
-	border-top: solid 2px white;
+	border-top: solid 2px grey;
 }
 
 .main-line {
 	width: 100%;
-	border-bottom: solid 2px white;
+	border-bottom: solid 2px grey;
 	height: 5px;
 	margin-bottom: 13px;
 }
@@ -190,9 +190,9 @@ button, .btn:not(.locked) {
 	transform: translate(-50%, 0);
 	width: 400px;
 	min-height: 10px;
-	color: white;
-	border: solid 2px white;
-	background-color: #171717;
+	color: #555;
+	border: solid 2px #333;
+	background-color: #111;
 	padding: 7px 25px;
 	transition-duration: 0.75s;
 }

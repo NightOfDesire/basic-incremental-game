@@ -86,14 +86,14 @@
     left: 0;
     z-index: 2;
 
-    background-color: #000e;
+    background-color: #000;
     min-width: 20px;
     max-width: 300px;
     min-height: 10px;
 	font-size: 13px;
 	padding: 5px 10px;
 
-	border: solid 3px #444;
+	border: solid 3px #222;
 	border-radius: 10px;
 
     color: white;
