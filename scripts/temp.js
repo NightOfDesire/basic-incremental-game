@@ -44,7 +44,7 @@ function updateTemp() {
     tmp.offlineMult = tmp.offlineActive?player.offline.time+1:1
     tmp.gs = E(1).mul(player.devoptions.speed)
     
-
+    updateScalingTemp()
     for (let x = 0; x < tmp_update.length; x++) tmp_update[x]()
     
 }

@@ -87,7 +87,7 @@ el.update.scaling = () => {
 }
 
 
-tmp_update.push(()=>{
+function updateScalingTemp() {
 	for (let x = 0; x < SCALE_TYPE.length; x++) {
 		let st = SCALE_TYPE[x]
         if (!tmp.scaling) tmp.scaling = {}
@@ -123,7 +123,7 @@ tmp_update.push(()=>{
 			}
 		}
 	}
-})
+}
 
 
 function scalingActive(name, amt, type) {
