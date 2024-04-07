@@ -138,17 +138,17 @@ table, tr {
 }
 
 button, .btn:not(.locked) {
-    border: solid 2.5px #666;
-    background-color: #444;
-	color: #777;
+    border: solid 2.5px #444;
+    background-color: #222;
+	color: #666;
     font-size: 13px;
 	cursor: pointer;
 	transition-property: background-color, border, transform, box-shadow;
 	transition-duration: 0.15s;
 }
 .btn.locked {
-	border: solid 2.5px #444;
-	background-color: #222;
+	border: solid 2.5px #333;
+	background-color: #111;
 	color: #444;
 	font-size: 13px;
 	cursor: default;

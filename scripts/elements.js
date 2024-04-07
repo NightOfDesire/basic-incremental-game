@@ -286,7 +286,7 @@ el.setup.main = () => {
 	}
 	tabs.setHTML(table)
 	stabs.setHTML(table2)
-	let ranks_table = new Element("ranks_table")
+	/*let ranks_table = new Element("ranks_table")
 	table = ""
 	for (let x = 0; x < RANKS.names.length; x++) {
 		let rn = RANKS.names[x]
@@ -312,7 +312,7 @@ el.setup.main = () => {
 		table += `</div>`
 	}
 
-	ranks_rewards_table.setHTML(table)
+	ranks_rewards_table.setHTML(table)*/
 	let scaling_table = new Element("scaling_table")
 	table = ""
 	

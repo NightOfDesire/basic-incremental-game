@@ -37,19 +37,17 @@ function resetTemp() {
 }
 
 
-
+tmp_update.push(()=>{
+    tmp.offlineActive = player.offline.time > 1
+    tmp.offlineMult = tmp.offlineActive?player.offline.time+1:1
+    tmp.gs = E(1).mul(player.devoptions.speed)
+})
 
 
 
 function updateTemp() {
     if (!tmp.notify) tmp.notify = []
     if (!tmp.popup) tmp.popup = []
-    if (!tmp.update) tmp.update = []
-    tmp.offlineActive = player.offline.time > 1
-    tmp.offlineMult = tmp.offlineActive?player.offline.time+1:1
-    tmp.gs = E(1).mul(player.devoptions.speed)
-    
-    updateScalingTemp()
     for (let x = 0; x < tmp_update.length; x++) tmp_update[x]()
     
 }
