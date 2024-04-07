@@ -69,7 +69,7 @@ function updateTooltips() {
     style.opacity = tt_time;
 }
 
-el.update.tooltips = () => {
+function updateTooltipOnChange() {
     tooltips = document.getElementsByClassName('tooltip')
     tooltip_div = document.getElementById('tooltip-div')
 
@@ -90,3 +90,10 @@ el.update.tooltips = () => {
     }
 }
 
+el.setup.tooltips = () => {
+    updateTooltipOnChange()
+
+    setInterval(updateTooltips,1000/30)
+
+    // setInterval(updateTooltipOnChange,100)
+}
