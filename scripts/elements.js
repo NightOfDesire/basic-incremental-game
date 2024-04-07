@@ -269,12 +269,12 @@ el.setup.main = () => {
 	let table2 = ""
 	for (let x = 0; x < TABS[1].length; x++) {
 		table += /*`<div>*/
-			`<button style="width: 15%;" onclick="TABS.choose(${x})" class="btn_tab" id="tab${x}">${TABS[1][x].icon ? `<iconify-icon icon="${TABS[1][x].icon}" width="17" style="color: ${TABS[1][x].color||"white"}"></iconify-icon>` : ""}${TABS[1][x].id}</button>
+			`<button style="min-width: 100px; margin: 4px; min-height: 33px;" onclick="TABS.choose(${x})" class="btn_tab" id="tab${x}">${TABS[1][x].icon ? `<iconify-icon icon="${TABS[1][x].icon}" width="17" style="color: ${TABS[1][x].color||"white"}"></iconify-icon>` : ""}${TABS[1][x].id}</button>
 		`/*</div>`*/
 		if (TABS[2][x]) {
 			let a = `<div id="stabs${x}" class="table_center stab_btn">`
 			for (let y = 0; y < TABS[2][x].length; y++) {
-				a += `<div style="width: 120px">
+				a += `<div style="min-width: 120px; margin: 3px; min-height: 20px;">
 					<button onclick="TABS.choose(${y}, true)" class="btn_tab" id="stab${x}_${y}">${TABS[2][x][y].id}</button>
 				</div>`
 			}
@@ -390,9 +390,9 @@ el.update.main = () => {
 	
 	tmp.el.loading.setDisplay(!tmp.start)
 	tmp.el.app.setDisplay(tmp.start)
-	updateSettingsHTML()
 	if (player.stab[3] == 1) updateElementsHTML()
-    
+    tmp.el.total_time.setDisplay(`Time Played: ${formatTime(player.total_time)}`)
+    tmp.el.savenotif.setHTML(player.options.savenotif ? `Save notification enabled.` : `Save notification disabled.`)
 }
 
 function updateHTML() {
