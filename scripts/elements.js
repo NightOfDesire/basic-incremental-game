@@ -2,7 +2,7 @@ var el = {
     setup: {},
     update: {}
 }
-const SCALE_START = {
+/*const SCALE_START = {
     super: {
         rank: E(25),
         tier: E(25),
@@ -85,10 +85,10 @@ el.update.scaling = () => {
 
 
 
-/**@param ssso */
+
 function updateScalingTemp() {
 	for (let x = 0; x < SCALE_TYPE.length; x++) {
-		/**@param rahh */
+		
 		let st = SCALE_TYPE[x]
         if (!tmp.scaling) tmp.scaling = {}
         if (!tmp.no_scalings) tmp.no_scalings = {}
@@ -112,7 +112,6 @@ function updateScalingTemp() {
 			ss[sn] = getScalingStart(x,sn)
 			if (noScalings(x,sn)) ns.push(sn)
 			else {
-		/**@param hell @param nawh */
 				if (sn == "pointUpg") for (let i = 0; i < 3; i++) {
 					if (scalingActive(sn, SCALING_RES[sn](i), st)) {
 						tmp.scaling[st].push(sn)
@@ -382,10 +381,6 @@ function setupHTML() {
 	}
 }
 
-function updateHTML() {
-    for (let x in el.update) el.update[x]()
-}
-
 el.update.main = () => {
     document.documentElement.style.setProperty('--font', player.options.font)
 	document.documentElement.style.setProperty('--cx', tmp.cx)
@@ -398,4 +393,8 @@ el.update.main = () => {
 	updateSettingsHTML()
 	if (player.stab[3] == 1) updateElementsHTML()
     
+}
+
+function updateHTML() {
+	for (let x in el.update) el.update[x]()
 }

@@ -191,7 +191,7 @@ button, .btn:not(.locked) {
 	width: 400px;
 	min-height: 10px;
 	color: #555;
-	border: solid 2px #333;
+	border: solid 2.75px #333;
 	background-color: #111;
 	padding: 7px 25px;
 	transition-duration: 0.75s;
@@ -1031,9 +1031,9 @@ h4 {
 	left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-	color: white;
-	border: solid 2px white;
-	background-color: #171717;
+	color: #555;
+	border: solid 2.75px #333;
+	background-color: #111;
 	padding: 7px 25px;
 	pointer-events: auto;
 	max-width: 600px; max-height: 400px;
