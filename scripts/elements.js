@@ -44,9 +44,6 @@ const SCALE_POWER = {
 
 	}
 }
-
-
-
 const SCALE_TYPE = ['super','hyper','extreme','ultra','exotic']
 const FULL_SCALE_NAME = ['Super','Hyper','Extreme','Ultra','EXOTIC']
 const SCALING_RES = {
