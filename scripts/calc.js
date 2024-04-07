@@ -15,14 +15,7 @@ function calc(dt) {
         return
     }
     
-    for (let x = 0; x < RANKS.names.length; x++) {
-        let rn = RANKS.names[x]
-        let rnF = RANKS.fullNames[x]
-        
-        if (RANKS.autoUnl[rn]() && player.auto_ranks[rn]) RANKS.bulk(rn)
-        
-        player["best"+rnF] = player["best"+rnF].max(player.ranks[rn])
-    }
+    
     player.total_time += dt
 
     
