@@ -157,6 +157,7 @@ function loadGame(start=true, gotNaN=false) {
     if (start) {
         updateTemp()
         setupHTML()
+        setupTooltips()
         setInterval(save,15000)
 
         /**@param {stfu} shutUpError */
@@ -176,7 +177,7 @@ function loadGame(start=true, gotNaN=false) {
         }
        
         setInterval(loop, 1000/FPS)
-       
+        setInterval(checkNaN, 1000)
 
         setTimeout(()=>{
             tmp.start = true

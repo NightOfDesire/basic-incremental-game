@@ -90,7 +90,7 @@ function updateTooltipOnChange() {
     }
 }
 
-el.setup.tooltips = () => {
+function setupTooltips() {
     updateTooltipOnChange()
 
     setInterval(updateTooltips,1000/30)
