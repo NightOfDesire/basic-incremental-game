@@ -15,7 +15,6 @@ function calc(dt) {
         return
     }
     
-    
     player.total_time += dt
 
     
