@@ -101,6 +101,7 @@ function export_copy() {
 }
 function importy() {
     let loadgame = prompt("Paste in your save. this will OVERWRITE your current save.")
+    if (loadgame == null) return
     let st = ""
     if (loadgame.length <= 100) st = convertStringIntoAGY(loadgame)
     if (st == 'OJY$VFe*b') {
@@ -120,24 +121,22 @@ function importy() {
         player.options.font = 'Wingding'
         return
     }
-    if (loadgame != null) {
-        let keep = player
-        try {
-            setTimeout(()=>{
-                if (findNaN(loadgame, true)) {
-                    addNotify("Error importing, part of save is NaNed.")
-                    return
-                }
-                load(loadgame)
-                save()
-                resetTemp()
-                loadGame(false)
-            }, 200)
-        }
-        catch (error) {
-            addNotify("Error importing.")
-            player = keep
-        }
+    let keep = player
+    try {
+        setTimeout(()=>{
+            if (findNaN(loadgame, true)) {
+                addNotify("Error importing, part of save is NaNed.")
+                return
+            }
+            load(loadgame)
+            save()
+            resetTemp()
+            loadGame(false)
+        }, 200)
+    }
+    catch (error) {
+        addNotify("Error importing.")
+        player = keep
     }
 }
 
