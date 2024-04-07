@@ -88,6 +88,7 @@ el.update.scaling = () => {
 /**@param ssso */
 function updateScalingTemp() {
 	for (let x = 0; x < SCALE_TYPE.length; x++) {
+		/**@param rahh */
 		let st = SCALE_TYPE[x]
         if (!tmp.scaling) tmp.scaling = {}
         if (!tmp.no_scalings) tmp.no_scalings = {}
