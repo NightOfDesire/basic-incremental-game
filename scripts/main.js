@@ -216,6 +216,10 @@ el.setup.elements = () => {
 
 }
 
+function setupHTML() {
+
+}
+
 el.update.elements = () => {
     let tElem = tmp.elem
     let ch = player.chosenElem > 0
