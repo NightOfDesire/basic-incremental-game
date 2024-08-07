@@ -180,6 +180,11 @@ function elemEffect(x,def=1) {
     return tmp.elem.effect[x]||def
 }
 
+const el = {
+    setup: {},
+    update: {}
+}
+
 el.setup.elements = () => {
     let elem_table = new Element("elements_table")
     let table = ""
