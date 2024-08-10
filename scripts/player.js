@@ -49,6 +49,8 @@ function getBaseData() {
         chosenElem: 0,
     }
 
+    s.sn = getSupernovaSave()
+
     /*for (let x in BUILDING_DATA) s.build[x] = {
         amt: E(0),
         auto: false
