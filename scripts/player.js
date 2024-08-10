@@ -1,3 +1,4 @@
+function E(x) {return new Decimal(x)}
 function getBaseData() {
     let s = {
         pts: E(0),
