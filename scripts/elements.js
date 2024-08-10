@@ -180,12 +180,12 @@ function elemEffect(x,def=1) {
     return tmp.elem.effect[x]||def
 }
 
-const el = {
+const html = {
     setup: {},
     update: {}
 }
 
-el.setup.elements = () => {
+html.setup.elements = () => {
     let elem_table = new Element("elements_table")
     let table = ""
     let num = 0
@@ -217,18 +217,18 @@ el.setup.elements = () => {
 }
 
 function setupHTML() {
-    for (i in el.setup) {
-        el.setup[i]()
+    for (i in html.setup) {
+        html.setup[i]()
     }
 }
 
 function updateHTML() {
-    for (i in el.update) {
-        el.update[i]()
+    for (i in html.update) {
+        html.update[i]()
     }
 }
 
-el.update.elements = () => {
+html.update.elements = () => {
     let tElem = tmp.elem
     let ch = player.chosenElem > 0
     for (let x = 1; x < ELEMENTS.upgs.length; x++) {
