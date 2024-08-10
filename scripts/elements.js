@@ -217,7 +217,15 @@ el.setup.elements = () => {
 }
 
 function setupHTML() {
+    for (i in el.setup) {
+        el.setup[i]()
+    }
+}
 
+function updateHTML() {
+    for (i in el.update) {
+        el.update[i]()
+    }
 }
 
 el.update.elements = () => {
